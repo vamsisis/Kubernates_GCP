@@ -1,0 +1,18 @@
+#minikube Commands
+brew install minikube
+minikube start --driver=hyperkit
+minikube status
+minikube start 
+minukube config view
+minikube delete
+minikube ip 
+
+#Kubectl Commands
+
+kubectl version 
+kubectl cluster-info
+kubectl apply -f <filename>
+kubectl get pods
+kubectl get services
+kubectl describe <objecttype> <>objectname>
+kubectl delete -f <configfile>
