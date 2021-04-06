@@ -6,6 +6,7 @@ minikube start
 minukube config view
 minikube delete
 minikube ip 
+telnet host.minikube.internal <port>
 
 #Kubectl Commands
 
@@ -15,4 +16,39 @@ kubectl apply -f <filename>
 kubectl get pods
 kubectl get services
 kubectl describe <objecttype> <>objectname>
-kubectl delete -f <configfile>
+kubectl delete -f <configfile>  -- To remove an object
+kubectl get pods -o wide -- to check POD IP Address
+
+
+
+#pushing image to image to docker hub
+
+docker build - t <imagename> .
+docker push <imagename>
+docker ps 
+eval $(minikube docker-env)
+minikube docker-env
+
+
+#To get the deployment to recreate ourt pods with latest verison of image
+ 
+ #Solution 3:
+ # Use an Imperative command to update the image version the deployment to use
+
+
+ #imperative command
+
+kubectl --CLI we use to change Kubernetes cluster
+set --we want to change property
+image --we want to change the image property 
+<object_type> --Type of Object // Deployment---Kind
+/
+<object_name> name of the object //client-deployment:name
+<container_name> Name of the container we are updating (get this from config file) // comes from spec
+=
+<new image to use> Full name of image to use with tag
+
+kubectl set image deployment/client-deployment client=1813354/multi-client:v5
+
+
+ 
