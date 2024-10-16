@@ -1,0 +1,341 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "ECS Fargate Production Dashboard",
+    "uid": null,
+    "schemaVersion": 36,
+    "version": 0,
+    "panels": [
+      {
+        "type": "text",
+        "gridPos": {
+          "h": 2,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "title": "ECS Fargate Overview",
+        "options": {
+          "content": "## Cluster: $cluster\n## Service: $service",
+          "mode": "markdown"
+        }
+      },
+      {
+        "type": "stat",
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 0,
+          "y": 2
+        },
+        "title": "Pending Task Count",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "PendingTaskCount",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": 0 },
+                { "color": "yellow", "value": 10 },
+                { "color": "red", "value": 20 }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "type": "stat",
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 4,
+          "y": 2
+        },
+        "title": "Deployment Count",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "DeploymentCount",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "stat",
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 8,
+          "y": 2
+        },
+        "title": "Desired Task Count",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "DesiredTaskCount",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "stat",
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 12,
+          "y": 2
+        },
+        "title": "Task Set Count",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "TaskSetCount",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "stat",
+        "gridPos": {
+          "h": 4,
+          "w": 4,
+          "x": 16,
+          "y": 2
+        },
+        "title": "Running Task Count",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "RunningTaskCount",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "gauge",
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 6
+        },
+        "title": "CPU Reserved",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "CPUReserved",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                { "color": "green", "value": 0 },
+                { "color": "yellow", "value": 70 },
+                { "color": "red", "value": 90 }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "type": "gauge",
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 6
+        },
+        "title": "CPU Utilized",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "CPUUtilized",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "gauge",
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 6
+        },
+        "title": "Memory Reserved",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "MemoryReserved",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "gauge",
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 6
+        },
+        "title": "Memory Utilized",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "MemoryUtilized",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "stat",
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 10
+        },
+        "title": "Ephemeral Storage Utilized",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "EphemeralStorageUtilized",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "stat",
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 10
+        },
+        "title": "Ephemeral Storage Reserved",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "EphemeralStorageReserved",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "timeSeries",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 14
+        },
+        "title": "Network Transmit Bytes",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "NetworkTxBytes",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "timeSeries",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 14
+        },
+        "title": "Network Receive Bytes",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "NetworkRxBytes",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "timeSeries",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 22
+        },
+        "title": "Storage Read Bytes",
