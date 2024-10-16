@@ -339,3 +339,65 @@
           "y": 22
         },
         "title": "Storage Read Bytes",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "StorageReadBytes",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      },
+      {
+        "type": "timeSeries",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 22
+        },
+        "title": "Storage Write Bytes",
+        "targets": [
+          {
+            "datasource": "CloudWatch",
+            "namespace": "AWS/ECS",
+            "metricName": "StorageWriteBytes",
+            "dimensions": {
+              "ClusterName": "$cluster",
+              "ServiceName": "$service"
+            },
+            "period": 60
+          }
+        ]
+      }
+    ],
+    "templating": {
+      "list": [
+        {
+          "name": "cluster",
+          "label": "Cluster",
+          "type": "query",
+          "datasource": "CloudWatch",
+          "query": {
+            "namespace": "AWS/ECS",
+            "dimension": "ClusterName"
+          }
+        },
+        {
+          "name": "service",
+          "label": "Service",
+          "type": "query",
+          "datasource": "CloudWatch",
+          "query": {
+            "namespace": "AWS/ECS",
+            "dimension": "ServiceName"
+          }
+        }
+      ]
+    }
+  }
+}
